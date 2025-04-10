@@ -48,3 +48,95 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## Emulator
+Для запуска симуляции различных телефонов, нужно зайти в PoweShell (запуск от администратора!)
+
+Проверить защиту:
+``` powershell
+Get-ExecutionPolicy
+```
+
+Результат этой команды:
+> Restricted
+- защита включена
+> Unrestricted
+- защита отключена
+
+Нам нужно отключить защиту для установки вспомогательных пакетов. Для этого нужно прописать команду:
+```powershell
+Set-ExecutionPolicy Unrestricted
+```
+
+После отключения защиты прописать команду в PowerShell:
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+Данной командоой устанавливаем `chocolatey` для работы с симуляцией. Ждём установку и прописываем команду:
+```powershell
+choco install -y nodejs-lts microsoft-openjdk17
+```
+
+Внимание! Данная команда сработает только если у Вас стоит Node.js (минимальная версия 18)
+
+Далее устанавливаем `Android Studio` с официального сайта: <a href="https://developer.android.com/studio?hl=ru" target="_blank">Android Studio</a>
+
+Устанавливаем `Android Studio`, заходим в `More Actions` и переходим в раздел `SDK Manager` и устанавливаем флажки:
+
+<img src="./img/sdkPlatforms.jpg" alt="sdk platforms"/>
+
+<img src="./img/sdkToolsShow.jpg" alt="sdk tools show"/>
+
+<img src="./img/sdkTools.jpg" alt="sdk tools"/>
+
+После установки пакетов заходим `More Actions` - `Virtual Device Manager`
+
+И нажимаем на `create virtual device +`, чтобы добавить новое устройство, по умолчанию можно выбрать `Pixel 2`. Установить пакеты для конкретной симуляции телефона и запустить.
+
+В случае ошибки:
+
+<img src="./img/error-play.jpg" alt="error play"/>
+
+Нужно зайти в `User` найти папку `AppData` -> `Local` -> `Android` -> `Sdk` -> `emulator`
+
+Нажать на командную строку:
+
+<img src='./img/cmd emulator.jpg' alt="cmd comand"/>
+
+и ввести `cmd`
+
+выскочит командная строка:
+
+<img src='./img/cmd-play-emulator.jpg' alt='cmd play emulator'/>
+
+ввести команду:
+```cmd
+emulator.exe -avd Pixel_2
+```
+последнее слово это название вашего устройства.
+
+Ошибка не исчезнет, если вы не зайдёте в папку `User` -> `.android` -> `avd` -> `название устройства (не папка)`:
+
+<img src='./img/path-android.jpg' alt='path-emulator' />
+
+Изменить путь файлов emulator на корень C-диска. А саму папку `(название устройства).avd` скопировать и перенести в корень С-диска
+
+И проделать в папке `User` -> `AppData` -> `Local` -> `Android` -> `Sdk` -> `emulator`
+
+Нажать на командную строку:
+
+<img src='./img/cmd emulator.jpg' alt="cmd comand"/>
+
+и ввести `cmd`
+
+выскочит командная строка:
+
+<img src='./img/cmd-play-emulator.jpg' alt='cmd play emulator'/>
+
+ввести команду:
+```cmd
+emulator.exe -avd Pixel_2
+```
+
+Запуск симуляции произойдёт, появится симуляция телефона и после включения нужно будет скачать приложение `expo go` для синхронизации с кодом.
