@@ -102,7 +102,7 @@ choco install -y nodejs-lts microsoft-openjdk17
 
 Нажать на командную строку:
 
-<img src='./img/cmd emulator.jpg' alt="cmd comand"/>
+<img src='./img/cmd-emulator.jpg' alt="cmd comand"/>
 
 и ввести `cmd`
 
@@ -126,7 +126,7 @@ emulator.exe -avd Pixel_2
 
 Нажать на командную строку:
 
-<img src='./img/cmd emulator.jpg' alt="cmd comand"/>
+<img src='./img/cmd-emulator.jpg' alt="cmd comand"/>
 
 и ввести `cmd`
 
